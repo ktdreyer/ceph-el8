@@ -101,7 +101,8 @@ interface, or the CLI.
 
 Here is how to do the build with the web UI:
 
-1. Log into the `Copr web UI <>`_
+1. Log into the `Copr web UI
+   <https://copr.fedorainfracloud.org/coprs/ktdreyer/ceph-el8/>`_
 2. Click the "Builds" tab
 3. Under "Select the source type", click "Upload"
 4. Under "Provide the source", click "Choose File"
@@ -110,7 +111,8 @@ Here is how to do the build with the web UI:
 
 Here is how to do the build with the CLI:
 
-1. Log into the Copr web UI
+1. Log into the `Copr web UI
+   <https://copr.fedorainfracloud.org/coprs/ktdreyer/ceph-el8/>`_
 2. Get your API token at the `Copr API Page
    <https://copr.fedorainfracloud.org/api/>`_
 3. Save the token to your system::
