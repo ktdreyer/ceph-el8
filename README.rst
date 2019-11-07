@@ -25,7 +25,8 @@ fedpkg will build the package in a local mock chroot. This chroot will be the
 version of Fedora that corresponds to the dist-git branch you have checked
 out. If you have checked out the ``master`` branch, this will build for Rawhide.
 If you have checked out the ``f30`` branch, then this will build in a Fedora
-30 buildroot. If you have checked out the 
+30 buildroot. If you have checked out the ``epel8`` branch, fedpkg will build
+with an EPEL 8 buildroot.
 
 Override the buildroot without branching
 ----------------------------------------
