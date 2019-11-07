@@ -137,8 +137,9 @@ Now we have two repositories that we want to use when we build cherrypy
 locally with mock: **epel8** plus the **el8-ceph** Copr.
 
 In order to use both repositories with mock, we need a custom mock
-configuration file. You can find that file in this Git repository. Here is how
-to install (symlink) it into place (``/etc/mock``)::
+configuration file. You can find `that file <el8-ceph-x86_64.cfg>`_ in
+this Git repository. Here is how to install (symlink) it into place
+(``/etc/mock``)::
 
     sudo -i
     cd /etc/mock
