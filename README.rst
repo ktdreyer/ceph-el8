@@ -111,20 +111,21 @@ Here is how to do the build with the web UI:
 
 Here is how to do the build with the CLI:
 
-1. Log into the `Copr web UI
+1. ``dnf install copr-cli``
+2. Log into the `Copr web UI
    <https://copr.fedorainfracloud.org/coprs/ktdreyer/ceph-el8/>`_
-2. Get your API token at the `Copr API Page
+3. Get your API token at the `Copr API Page
    <https://copr.fedorainfracloud.org/api/>`_
-3. Save the token to your system::
+4. Save the token to your system::
 
     vim ~/.config/copr
 
-4. Test that your authentication works::
+5. Test that your authentication works::
 
     copr-cli whoami
     ktdreyer
 
-5. Run the ``build`` command with your SRPM::
+6. Run the ``build`` command with your SRPM::
 
     copr-cli build ktdreyer/ceph-el8 python-path-11.5.0-2.fc32.src.rpm
 
