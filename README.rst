@@ -17,7 +17,7 @@ a package (eg. python-remoto) like so::
 Locally build a Fedora package using mock
 -----------------------------------------
 
-In the dist-git clone directory::
+(You must be a member of the "mock" group.) In the dist-git clone directory::
 
     fedpkg mockbuild
 
