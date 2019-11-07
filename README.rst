@@ -161,5 +161,6 @@ Conclusion
 
 We will iterate through the list of missing epel8 packages until we can
 completely build cherrypy. Once that is done, we will branch all the packages
-that we need in dist-git. Then we will do the real builds in Fedora's koji and
-push those as updates to epel8 in Bodhi.
+that we need in dist-git. Then we will do the real builds in `Fedora's
+koji <https://koji.fedoraproject.org/koji/>`_ and push those as updates to
+epel8 in `Bodhi <https://bodhi.fedoraproject.org>`_.
