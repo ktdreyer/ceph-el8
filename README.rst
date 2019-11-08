@@ -3,7 +3,8 @@ Building Ceph's dependencies for EPEL 8
 
 Our strategy is to fork packages from Fedora Rawhide into EPEL 8.
 
-As an intermediate step, we will build these in a Copr first.
+As an intermediate step, we will build these in a `Copr
+<https://copr.fedorainfracloud.org/coprs/ktdreyer/ceph-el8/>`_ first.
 
 Clone the source code for a Fedora package
 ------------------------------------------
