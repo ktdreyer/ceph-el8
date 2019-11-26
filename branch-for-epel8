@@ -1,0 +1,46 @@
+#!/usr/bin/python3
+
+from copr.v3 import Client
+from subprocess import check_call
+from libpagure import Pagure
+
+
+def list_packages():
+    client = Client.create_from_config_file()
+    return client.package_proxy.get_list('ktdreyer', 'ceph-el8')
+
+
+def check_branch(name):
+    pg = Pagure(instance_url='https://src.fedoraproject.org')
+    request_url = '{}/api/0/rpms/{}/git/branches'.format(pg.instance, name)
+    return_value = pg._call_api(request_url)
+    branches = return_value['branches']
+    return 'epel8' in branches
+
+
+def request_branch(name):
+    check_call(['fedpkg', 'request-branch', '--repo', name, 'epel8'])
+
+
+# TODO: remove these from our Copr. They are already in RHEL 8.
+RHEL_8 = ['python-werkzeug', 'python-setuptools_scm']
+
+
+def main():
+    packages = list_packages()
+    for package in packages:
+        if package.name in RHEL_8:
+            continue
+        if package.name == 'python-importlib-metadata':
+            # This is an entirely new package that I imported separately
+            continue
+        has_branch = check_branch(package.name)
+        if has_branch:
+            print('%s - already branched' % package.name)
+        else:
+            print('%s - requesting new epel8 branch' % package.name)
+            request_branch(package.name)
+
+
+if __name__ == '__main__':
+    main()
