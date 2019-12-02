@@ -27,6 +27,7 @@ def main():
     for package in packages:
         if package.name == 'python-importlib-resources':
             # This is an entirely new package that I imported separately
+            # at https://bugzilla.redhat.com/show_bug.cgi?id=1772578
             continue
         has_branch = check_branch(package.name)
         if has_branch:
