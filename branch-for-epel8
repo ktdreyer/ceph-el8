@@ -22,15 +22,9 @@ def request_branch(name):
     check_call(['fedpkg', 'request-branch', '--repo', name, 'epel8'])
 
 
-# TODO: remove these from our Copr. They are already in RHEL 8.
-RHEL_8 = ['python-werkzeug', 'python-setuptools_scm']
-
-
 def main():
     packages = list_packages()
     for package in packages:
-        if package.name in RHEL_8:
-            continue
         if package.name == 'python-importlib-metadata':
             # This is an entirely new package that I imported separately
             continue
