@@ -25,7 +25,7 @@ def request_branch(name):
 def main():
     packages = list_packages()
     for package in packages:
-        if package.name == 'python-importlib-metadata':
+        if package.name == 'python-importlib-resources':
             # This is an entirely new package that I imported separately
             continue
         has_branch = check_branch(package.name)
