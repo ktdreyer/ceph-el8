@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+
+from copr.v3 import Client
+from collections import defaultdict
+from libpagure import Pagure
+
+import requests_cache
+requests_cache.install_cache('request-access')
+
+
+def list_packages():
+    client = Client.create_from_config_file()
+    return client.package_proxy.get_list('ktdreyer', 'ceph-el8')
+
+
+def list_admins(name):
+    pg = Pagure(instance_url='https://src.fedoraproject.org')
+    request_url = '{}/api/0/rpms/{}'.format(pg.instance, name)
+    return_value = pg._call_api(request_url)
+    access_users = return_value['access_users']
+    admins = access_users['owner'] + access_users['admin']
+    return admins
+
+
+def main():
+    packages = list_packages()
+    # Assemble a mapping of FAS users -> packages
+    users = defaultdict(set)
+    for package in sorted(packages, key=lambda p: p.name):
+        if package.name == 'python-importlib-resources':
+            # This is an entirely new package that I imported separately
+            continue
+        if package.name == 'python-zipp':
+            # Handled this one manually,
+            # https://pagure.io/releng/fedora-scm-requests/issue/20092
+            continue
+        admins = list_admins(package.name)
+        print('%s - %s' % (package.name, admins))
+        for admin in admins:
+            users[admin].add(package.name)
+
+    print('--- %d Packagers ---' % len(users))
+
+    for user in sorted(users.keys()):
+        user_packages = users[user]
+        print('%s - %d pkgs' % (user, len(user_packages)))
+        for package in user_packages:
+            print('- %s' % package)
+
+
+if __name__ == '__main__':
+    main()
