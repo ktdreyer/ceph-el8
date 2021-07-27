@@ -24,8 +24,12 @@ def list_admins(name):
 
 def main():
     packages = list_packages()
+
+    print('--- %d Packages ---' % len(packages))
+
     # Assemble a mapping of FAS users -> packages
     users = defaultdict(set)
+
     for package in sorted(packages, key=lambda p: p.name):
         if package.name == 'python-importlib-resources':
             # This is an entirely new package that I imported separately
